@@ -84,7 +84,7 @@ app.post("/save", async (req, res) => {
  
      try {
          // Create a new document with the extracted data
-        // const newContact = await contactSchema.create({ name, email, subject, message });
+         const newContact = await contactSchema.create({ name, email, subject, message });
 
          // Usage example
         const clientname = name;
@@ -103,4 +103,6 @@ app.post("/save", async (req, res) => {
         }
 });
 
-app.listen(port,()=>{console.log(`Server start on ${port}`);})
+app.listen(port,()=>{
+    //console.log(`Server start on ${port}`);
+})
