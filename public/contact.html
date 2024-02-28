@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/aos.css">
     <link rel="stylesheet" href="assets/css/style-light.css">
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+
 </head>
 <body>
 
@@ -150,7 +152,7 @@
     <script src="assets/js/main.js"></script>
     <script src="assets/js/ajax-form.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
+    <!-- <script>
        $(document).ready(function() {
     $('#dataForm').submit(function(event) {
         // Prevent default form submission
@@ -180,7 +182,34 @@
         });
     });
 });
-
-    </script>
+    </script> -->
+<script>
+    document.getElementById('dataForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent form from submitting
+    var data = {
+    service_id: 'service_ma6jils',
+    template_id: 'template_s0jv0im',
+    user_id: 'XmLqAlMDWVRdT8K1F',
+    template_params: {
+        to_name: $('#name').val(),
+        from_name: $('#email').val(),
+        subject: $('#subject').val(),
+        message: $('#message').val()
+    }
+};
+ 
+//alert(data);
+    $.ajax('https://api.emailjs.com/api/v1.0/email/send', {
+    type: 'POST',
+    data: JSON.stringify(data),
+    contentType: 'application/json'
+    }).done(function() {
+        alert('Your mail is sent!');
+        window.location.href = 'index.html';   
+    }).fail(function(error) {
+            alert('Oops... ' + JSON.stringify(error));
+        });
+    });
+  </script>
 </body>
 </html>

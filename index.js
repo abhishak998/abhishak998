@@ -4,7 +4,8 @@ const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
 const path = require('path');
 const fs = require('fs');
-//port
+// Require the Twilio module
+
 const port= process.env.PORT || 1001;
 
 // connection to db and Schema
@@ -18,10 +19,6 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 // Serve static files from the 'public' folder
 app.use(express.static(path.join(__dirname, 'public')));
-
-
-
-
 
 app.get('/', (req, res) => {
     // Send the 'home.html' file as the response
@@ -46,8 +43,6 @@ const sendEmail = async (name,to, subject, text) => {
 
    // Replace the client name placeholder with the actual client name
    html = html.replace('{{clientName}}', name);
-
-
         // Send email to client
         await transporter.sendMail({
             from: 'abhishakk998@gmail.com',
@@ -69,7 +64,6 @@ const sendEmail = async (name,to, subject, text) => {
         console.error('Error sending email:', error);
     }
 };
-
 
 
 
